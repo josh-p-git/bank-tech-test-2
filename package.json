@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/josh-p-git/bank-tech-test/issues"
   },
-  "homepage": "https://github.com/josh-p-git/bank-tech-test#readme"
+  "homepage": "https://github.com/josh-p-git/bank-tech-test#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
 }

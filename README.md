@@ -13,6 +13,7 @@ $ nvm use node
 
 npm add jest
 npm install -g jest
+npm install prompt-sync
 npm init -y
 
 
