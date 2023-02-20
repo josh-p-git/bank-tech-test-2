@@ -9,6 +9,12 @@ class Account {
         const deposit = `${date} || ${amount} || || ${this.balance}`;
         this.statement.push(deposit);
     }
+
+    withdraw(amount, date) {
+        this.balance -= amount;
+        const withdrawal = `${date} || || ${amount} || ${this.balance}`;
+        this.statement.push(withdrawal);
+    }
 };
 
 module.exports = Account;
