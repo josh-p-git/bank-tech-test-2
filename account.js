@@ -4,6 +4,11 @@ class Account {
         this.statement = [];
     }
 
+    returnStatement() {
+        return "date || credit || debit || balance\n" +
+        this.statement.reverse().join('\n');
+    }
+
     deposit(amount, date) {
         this.balance += amount;
         const deposit = `${date} || ${amount} || || ${this.balance}`;

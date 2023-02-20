@@ -43,3 +43,25 @@ describe('A withdrawal can be made', () => {
         expect(account.statement.length).toEqual(2);
     });
 });
+
+describe('A statement can be viewed', () => {
+    test('The statement can be viewed with the correct header', () => {
+        const account = new Account();
+        expect(account.returnStatement()).toEqual("date || credit || debit || balance\n");
+    });
+
+    test('The statement will show a deposit', () => {
+        const account = new Account();
+        account.deposit(1000, '10/01/2003')
+        expect(account.returnStatement()).toContain("date || credit || debit || balance\n");
+        expect(account.returnStatement()).toContain("10/01/2003 || 1000 || || 1000")
+    });
+
+    test('The statement will show a withdrawal', () => {
+        const account = new Account();
+        account.deposit(1000, '10/01/2003')
+        account.withdraw(500, '11/01/2003')
+        expect(account.returnStatement()).toContain("date || credit || debit || balance\n");
+        expect(account.returnStatement()).toContain("11/01/2003 || || 500 || 500")
+    });
+});
