@@ -1,7 +1,11 @@
+const currentDate = new Date().toLocaleDateString('en-GB');
+
+
 class Account {
-    constructor(balance, transactions) {
+    constructor() {
         this.balance = 0;
         this.statement = [];
+        this.date = currentDate;
     }
 
     returnStatement() {
@@ -9,17 +13,21 @@ class Account {
         this.statement.reverse().join('\n');
     }
 
-    deposit(amount, date) {
+    deposit(amount) {
         this.balance += amount;
-        const deposit = `${date} || ${amount} || || ${this.balance}`;
+        const deposit = `${this.date} || ${amount} || || ${this.balance}`;
         this.statement.push(deposit);
     }
 
-    withdraw(amount, date) {
+    withdraw(amount) {
         this.balance -= amount;
-        const withdrawal = `${date} || || ${amount} || ${this.balance}`;
+        const withdrawal = `${this.date} || || ${amount} || ${this.balance}`;
         this.statement.push(withdrawal);
     }
 };
+
+/*test = new Account;
+test.deposit(1000);
+console.log(test.returnStatement());*/
 
 module.exports = Account;

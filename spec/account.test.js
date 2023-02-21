@@ -1,4 +1,5 @@
 const Account = require ('../account.js');
+const currentDate = new Date().toLocaleDateString('en-GB'); //this is the current date in dd/mm/yyyy format
 
 describe('Account can be created', () => {
     const account = new Account();
@@ -10,19 +11,23 @@ describe('Account can be created', () => {
     test('Account is created with an empty statement', () => {
         expect(account.statement).toEqual([]);
     });
+
+    test('Account is created with current date in dd/mm/yyyy format', () => {
+        expect(account.date).toEqual(currentDate);
+    });    
 });
 
 describe('A deposit can be made', () => {
     test('The balance is updated when a deposit is made', () => {
         const account = new Account();
-        account.deposit(1000, '10/01/2003')
+        account.deposit(1000)
         expect(account.balance).toEqual(1000);
     });
 
     test('A record of the deposit amount and date is stored', () => {
         const account = new Account();
-        account.deposit(1000, '10/01/2003')
-        expect(account.statement).toEqual(["10/01/2003 || 1000 || || 1000"]);
+        account.deposit(1000)
+        expect(account.statement).toEqual([`${currentDate} || 1000 || || 1000`]);
         expect(account.statement.length).toEqual(1);
     });
 });
@@ -30,16 +35,16 @@ describe('A deposit can be made', () => {
 describe('A withdrawal can be made', () => {
     test('The balance is updated when a withdrawal is made', () => {
         const account = new Account();
-        account.deposit(1000, '10/01/2003')
-        account.withdraw(500, '11/01/2003')
+        account.deposit(1000)
+        account.withdraw(500)
         expect(account.balance).toEqual(500);
     });
 
     test('A record of the withdrawal amount and date is stored', () => {
         const account = new Account();
-        account.deposit(1000, '10/01/2003')
-        account.withdraw(500, '11/01/2003')
-        expect(account.statement[1]).toEqual("11/01/2003 || || 500 || 500");
+        account.deposit(1000)
+        account.withdraw(500)
+        expect(account.statement[1]).toEqual(`${currentDate} || || 500 || 500`);
         expect(account.statement.length).toEqual(2);
     });
 });
@@ -52,16 +57,16 @@ describe('A statement can be viewed', () => {
 
     test('The statement will show a deposit', () => {
         const account = new Account();
-        account.deposit(1000, '10/01/2003')
+        account.deposit(1000)
         expect(account.returnStatement()).toContain("date || credit || debit || balance\n");
-        expect(account.returnStatement()).toContain("10/01/2003 || 1000 || || 1000")
+        expect(account.returnStatement()).toContain(`${currentDate} || 1000 || || 1000`)
     });
 
     test('The statement will show a withdrawal', () => {
         const account = new Account();
-        account.deposit(1000, '10/01/2003')
-        account.withdraw(500, '11/01/2003')
+        account.deposit(1000)
+        account.withdraw(500)
         expect(account.returnStatement()).toContain("date || credit || debit || balance\n");
-        expect(account.returnStatement()).toContain("11/01/2003 || || 500 || 500")
+        expect(account.returnStatement()).toContain(`${currentDate} || || 500 || 500`)
     });
 });
