@@ -11,24 +11,26 @@ class Account {
     }
 
     deposit(amount) {
-        this.balance += amount;
-        const deposit = `${this.date} || ${amount} || || ${this.balance}`;
-        this.statement.push(deposit);
+        if (typeof amount != 'number' ) {
+            throw new Error('Please enter a number');
+        } else {
+            this.balance += amount;
+            const deposit = `${this.date} || ${amount.toFixed(2)} || || ${this.balance.toFixed(2)}`;
+            this.statement.push(deposit);
+        }
     }
 
     withdraw(amount) {
-        if (amount <= this.balance ) {
-        this.balance -= amount;
-        const withdrawal = `${this.date} || || ${amount} || ${this.balance}`;
-        this.statement.push(withdrawal);
-        } else {
+        if (typeof amount != 'number' ) {
+            throw new Error('Please enter a number');
+        } else if  (amount >= this.balance ){
             throw new Error('Account balance is too low');
+        } else {
+            this.balance -= amount;
+            const withdrawal = `${this.date} || || ${amount.toFixed(2)} || ${this.balance.toFixed(2)}`;
+            this.statement.push(withdrawal);
         }
     }
 };
-
-/*test = new Account;
-test.deposit(1000);
-test.withdraw(500);*/
 
 module.exports = Account;

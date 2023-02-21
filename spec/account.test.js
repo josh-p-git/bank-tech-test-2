@@ -27,7 +27,7 @@ describe('A deposit can be made', () => {
     test('A record of the deposit amount and date is stored', () => {
         const account = new Account();
         account.deposit(1000)
-        expect(account.statement).toEqual([`${currentDate} || 1000 || || 1000`]);
+        expect(account.statement).toEqual([`${currentDate} || 1000.00 || || 1000.00`]);
         expect(account.statement.length).toEqual(1);
     });
 });
@@ -44,7 +44,7 @@ describe('A withdrawal can be made', () => {
         const account = new Account();
         account.deposit(1000)
         account.withdraw(500)
-        expect(account.statement[1]).toEqual(`${currentDate} || || 500 || 500`);
+        expect(account.statement[1]).toEqual(`${currentDate} || || 500.00 || 500.00`);
         expect(account.statement.length).toEqual(2);
     });
 
@@ -65,7 +65,7 @@ describe('A statement can be viewed', () => {
         const account = new Account();
         account.deposit(1000)
         expect(account.returnStatement()).toContain("date || credit || debit || balance\n");
-        expect(account.returnStatement()).toContain(`${currentDate} || 1000 || || 1000`)
+        expect(account.returnStatement()).toContain(`${currentDate} || 1000.00 || || 1000.00`)
     });
 
     test('The statement will show a withdrawal', () => {
@@ -73,6 +73,6 @@ describe('A statement can be viewed', () => {
         account.deposit(1000)
         account.withdraw(500)
         expect(account.returnStatement()).toContain("date || credit || debit || balance\n");
-        expect(account.returnStatement()).toContain(`${currentDate} || || 500 || 500`)
+        expect(account.returnStatement()).toContain(`${currentDate} || || 500.00 || 500.00`)
     });
 });
