@@ -47,6 +47,12 @@ describe('A withdrawal can be made', () => {
         expect(account.statement[1]).toEqual(`${currentDate} || || 500 || 500`);
         expect(account.statement.length).toEqual(2);
     });
+
+    test('A withdrawal cannot be made if there are insufficient funds', () => {
+        const account = new Account();
+        account.deposit(1000)
+        expect(() => account.withdraw(2000)).toThrow(Error('Account balance is too low'));
+    });
 });
 
 describe('A statement can be viewed', () => {

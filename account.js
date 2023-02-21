@@ -1,11 +1,8 @@
-const currentDate = new Date().toLocaleDateString('en-GB');
-
-
 class Account {
     constructor() {
         this.balance = 0;
         this.statement = [];
-        this.date = currentDate;
+        this.date = new Date().toLocaleDateString('en-GB');
     }
 
     returnStatement() {
@@ -20,14 +17,18 @@ class Account {
     }
 
     withdraw(amount) {
+        if (amount <= this.balance ) {
         this.balance -= amount;
         const withdrawal = `${this.date} || || ${amount} || ${this.balance}`;
         this.statement.push(withdrawal);
+        } else {
+            throw new Error('Account balance is too low');
+        }
     }
 };
 
 /*test = new Account;
 test.deposit(1000);
-console.log(test.returnStatement());*/
+test.withdraw(500);*/
 
 module.exports = Account;
