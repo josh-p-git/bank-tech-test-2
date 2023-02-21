@@ -39,6 +39,8 @@ Below is a snapshot of the aforementioned Exaclidraw
 
 https://github.com/josh-p-git/bank-tech-test-2/blob/main/initial-notes.png
 
+https://raw.githubusercontent.com/josh-p-git/bank-tech-test-2/main/initial-notes.png
+
 
 # bank-tech-test
 
