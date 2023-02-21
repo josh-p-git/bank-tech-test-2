@@ -42,7 +42,7 @@ Below is a snapshot of the aforementioned Excalidraw
 ![initial-notes](https://user-images.githubusercontent.com/114086173/220374383-dac98d29-1ba5-4e14-ad06-c646c9fdd1de.png)
 # How to run the code
 
-Here are the instructions on how to run the code and tests
+Here are the instructions on how to run the code and tests.
 
 To begin please clone this repository.
 
