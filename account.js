@@ -1,13 +1,19 @@
+currentDate = new Date().toLocaleDateString('en-GB'); //current date in dd/mm/yyyy format
+
 class Account {
     constructor() {
         this.balance = 0;
         this.statement = [];
-        this.date = new Date().toLocaleDateString('en-GB');
+        this.date = currentDate; 
     }
 
     returnStatement() {
-        return "date || credit || debit || balance\n" +
-        this.statement.reverse().join('\n');
+        if (this.statement.length === 0) {
+            throw new Error('No transactions have been made')
+        } else {
+            return "date || credit || debit || balance\n" +
+            this.statement.reverse().join('\n'); //returns statement entries in reverse chronolgical order
+        }
     }
 
     deposit(amount) {
@@ -16,7 +22,7 @@ class Account {
         } else {
             this.balance += amount;
             const deposit = `${this.date} || ${amount.toFixed(2)} || || ${this.balance.toFixed(2)}`;
-            this.statement.push(deposit);
+            this.statement.push(deposit); //updates the balance then saves a record of the transaction
         }
     }
 
@@ -28,7 +34,7 @@ class Account {
         } else {
             this.balance -= amount;
             const withdrawal = `${this.date} || || ${amount.toFixed(2)} || ${this.balance.toFixed(2)}`;
-            this.statement.push(withdrawal);
+            this.statement.push(withdrawal); //updates the balance then saves a record of the transaction
         }
     }
 };
