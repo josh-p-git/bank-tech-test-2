@@ -37,9 +37,7 @@ I then made some additional notes as to what I wanted to achieve in terms of tes
 
 Below is a snapshot of the aforementioned Exaclidraw
 
-https://github.com/josh-p-git/bank-tech-test-2/blob/main/initial-notes.png
-
-https://raw.githubusercontent.com/josh-p-git/bank-tech-test-2/main/initial-notes.png
+![initial-notes](https://user-images.githubusercontent.com/114086173/220374383-dac98d29-1ba5-4e14-ad06-c646c9fdd1de.png)
 
 
 # bank-tech-test
