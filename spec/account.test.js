@@ -35,7 +35,6 @@ describe('A deposit can be made', () => {
         const account = new Account();
         expect(() => account.deposit("one thousand")).toThrow(Error('Please enter a number'));
     });
-
 });
 
 describe('A withdrawal can be made', () => {
